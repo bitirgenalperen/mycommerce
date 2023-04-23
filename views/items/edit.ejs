@@ -2,15 +2,16 @@
 <div class="row">
 <h1 class="text-center">Edit/Fill Item Details</h1>
 <div class="col-6 offset-3">
-<form class="d-grid gap-2" action="/items/<%=item._id%>?_method=PUT" method="POST">
+<form class="d-grid gap-2 form-validation" action="/items/<%=item._id%>?_method=PUT" method="POST" novalidate>
     <div class="mb-3">
         <label class="form-label" for="name">Item Name</label>
-        <input class="form-control" type="text" name="name" id="name" placeholder="Item name" value="<%=item.name%>">
+        <input class="form-control" type="text" name="name" id="name" placeholder="Item name" 
+        value="<%=item.name%>" required>
     </div>
     <div class="mb-3">
         <label class="form-label" for="description">Item Description</label>
         <textarea class="form-control" type="text" name="description" id="description" 
-        placeholder="Item description"><%=item.description%></textarea>
+        placeholder="Item description" required><%=item.description%></textarea>
     </div>   
     <div class="mb-3">
         <label class="form-label" for="category">Select Category</label>
@@ -26,18 +27,19 @@
         <div class="input-group">
             <span class="input-group-text" id="price-label">$</span>
             <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" 
-            aria-describedby="price-label" name="price" value="<%=item.price%>">
+            aria-describedby="price-label" name="price" value="<%=item.price%>" required>
         </div>
     </div>
     <div class="mb-3">
         <label class="form-label" for="image">Image Adress</label>
-        <input class="form-control" type="text" name="image" placeholder="item image link" value="<%=item.image%>">
+        <input class="form-control" type="text" name="image" placeholder="item image link" 
+        value="<%=item.image%>" required>
     </div>
 
     <% if (item.article === "clothing") { %>
         <div class="mb-3">
             <label class="form-label" for="size">Select Size</label>
-            <select class="form-select" name="size" id="size">
+            <select class="form-select" name="size" id="size" required>
                 <option value="xs" <%=item.size === 'xs' ? 'selected' : ''%>>XS</option>
                 <option value="s" <%=item.size === 's' ? 'selected' : ''%>>S</option>
                 <option value="m" <%=item.size === 'm' ? 'selected' : ''%>>M</option>
@@ -46,7 +48,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="color">Select Color</label>
-            <select class="form-select" name="color" id="color">
+            <select class="form-select" name="color" id="color" required>
                 <option value="black" <%=item.color === 'black' ? 'selected' : ''%>>Black</option>
                 <option value="white" <%=item.color === 'white' ? 'selected' : ''%>>White</option>
                 <option value="red" <%=item.color === 'red' ? 'selected' : ''%>>Red</option>
@@ -59,7 +61,8 @@
     <% if (item.article === "oem" || item.article === "monitor") { %>
         <div class="mb-3">
             <label class="form-label" for="spec">Item Spec</label>
-            <input class="form-control" type="text" name="spec" id="spec" placeholder="item spec" value="<%=item.spec%>">
+            <input class="form-control" type="text" name="spec" id="spec" placeholder="item spec" 
+            value="<%=item.spec%>" required>
         </div>
     <% } %>
     <button class="btn btn-info mx-auto">Update</button>

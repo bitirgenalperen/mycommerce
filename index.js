@@ -18,9 +18,8 @@ const Item = require("./models/item");
 const Review = require("./models/review");
 
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+const items = require('./routes/items');
+const reviews = require('./routes/reviews');
 
 mongoose.connect(MONGO_DB_URI, {
     useNewUrlParser: true,
@@ -40,93 +39,12 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 
+app.use('/items', items);
+app.use('/items/:itemId/reviews', reviews);
+
 app.get('/', (req, res) => {
     res.redirect('/items');
 })
-
-app.get('/items', AsyncWrapper(async (req, res) => {
-    let {article} = req.query;
-    if(article){
-        const items = await Item.find({article});
-        article = capitalizeFirstLetter(article);
-        res.render('items/index', {items, article});
-    }else{
-        const items = await Item.find({});
-        res.render('items/index', {items, article: "All"});
-    }
-    
-}))
-
-app.get("/items/new", (req, res) => {
-    res.render('items/new');
-    
-})
-
-app.post('/items', AsyncWrapper(async (req, res) => {
-    const {name, description, article, price, image} = req.body;
-    // console.log(name, description, article, price, image);
-    const newItem = new Item({name, description, article, price, image});
-    await newItem.save();
-    res.redirect(`/items/${newItem._id}/edit`);
-}))
-
-app.get('/items/:id', AsyncWrapper(async (req, res) => {
-    const {id} = req.params;
-    const item = await Item.findById(id).populate('reviews');
-    res.render('items/show', {item});
-}))
-
-app.get('/items/:id/edit', AsyncWrapper(async (req, res) => {
-    const {id} = req.params;
-    const item = await Item.findById(id);
-    res.render('items/edit', {item});
-}))
-
-// category değişimine uyum saglayacak degisiklikleri yap!
-app.put('/items/:id', AsyncWrapper(async (req, res) => {
-    const {id} = req.params;
-    const item = await Item.findByIdAndUpdate(id, req.body, {runValidators:true});
-    res.redirect(`/items/${item._id}`);
-}))
-
-app.delete('/items/:id', AsyncWrapper(async (req, res) => {
-    const {id} = req.params;
-    await Item.findByIdAndDelete(id);
-    res.redirect('/items');
-}))
-
-// catch async function ekle
-// add a review
-app.post('/items/:id/reviews', AsyncWrapper(async (req, res) => {
-    const {id} = req.params;
-    const item = await Item.findById(id);
-    const {content, rating} = req.body;
-    const review = new Review({content, rating});
-    item.reviews.push(review);
-    await review.save();
-    await item.save();
-    res.redirect(`/items/${id}`);
-}))
-
-app.get('/items/:itemId/reviews/:reviewId/edit', AsyncWrapper(async (req, res) => {
-    const {itemId, reviewId} = req.params;
-    const review = await Review.findById(reviewId );
-    res.render('reviews/edit', {review, itemId});
-}))
-
-app.put('/items/:itemId/reviews/:reviewId', AsyncWrapper(async (req, res) => {
-    const {itemId, reviewId} = req.params;
-    const review = await Review.findByIdAndUpdate(reviewId, req.body, {runValidators:true});
-    res.redirect(`/items/${itemId}`);
-}))
-
-// delete the review
-app.delete('/items/:itemId/reviews/:reviewId', AsyncWrapper(async (req, res) => {
-    const {itemId, reviewId} = req.params;
-    await Item.findByIdAndUpdate(itemId, {$pull: {reviews: reviewId}});
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/items/${itemId}`);
-}))
 
 app.all('*', (req, res, next) => {
     next(new ErrorHandler('Page Couldnot Be Reached!', 404));

@@ -13,7 +13,12 @@
           <li class="list-group-item">Description: <%= item.description %></li>
           <li class="list-group-item">Category: <a href="/items?article=<%=item.article%>"><%=item.article%></a></li>
           <li class="list-group-item">Price: <%= item.price %></li>
-          <li class="list-group-item">Spec: <%= item.spec %></li>
+          <% if (item.article === 'oem' || item.article === 'monitor') { %>
+              <li class="list-group-item">Spec: <%= item.spec %></li>
+          <% } else if(item.article === 'clothing') {%>
+            <li class="list-group-item">Size: <%= item.size %></li>
+            <li class="list-group-item">Color: <%= item.color %></li>
+            <% } %>
           <% if (item.reviews.length === 0) { %>
               <li class="list-group-item">No reviews yet!</li>
           <% } else {%>
@@ -48,7 +53,7 @@
       <label for="content" class="form-label">Review:</label>
       <textarea class="form-control" name="content" id="content" cols="20" rows="4" style="resize: none;"></textarea>
     </div>
-    <div class="text-center">
+    <div class="text-center mb-5">
       <button type="submit" class="btn btn-success px-5">Submit</button>
     </div>
   </form>

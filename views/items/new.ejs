@@ -4,18 +4,19 @@
     
     <h1 class="text-center">New Item</h1>
     <div class="col-6 offset-3">
-        <form class="d-grid gap-2" action="/items" method="POST">
+        <form class="d-grid gap-2 form-validation" action="/items" method="POST" novalidate>
             <div class="mb-3">
                 <label class="form-label" for="name">Item Name</label>
-                <input class="form-control" type="text" name="name" id="name" placeholder="Item name">
+                <input class="form-control" type="text" name="name" id="name" placeholder="Item name" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Item Description</label>
-                <textarea class="form-control" type="text" name="description" id="description" placeholder="Item description"></textarea>
+                <textarea class="form-control" type="text" name="description" id="description" 
+                placeholder="Item description" required></textarea>
             </div>
            <div class="mb-3">
             <label class="form-label" for="category">Select Category</label>
-                <select class="form-select" name="article" id="category">
+                <select class="form-select" name="article" id="category" required>
                     <option value="clothing">Clothing</option>
                     <option value="oem">OEM</option>
                     <option value="monitor">Monitor</option>
@@ -28,12 +29,12 @@
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">$</span>
                     <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" 
-                    aria-describedby="price-label" name="price">
+                    aria-describedby="price-label" name="price" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image Adress</label>
-                <input class="form-control" type="text" name="image" placeholder="Image link">
+                <input class="form-control" type="text" name="image" placeholder="Image link" required>
             </div>
             <button class="btn btn-warning mx-auto">Continue with Details</button>
         </form>
@@ -42,3 +43,4 @@
     
 </div>
 <a class="btn btn-danger mt-5" role="button" href="/items">Cancel</a>
+
