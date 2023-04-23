@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+<% if (article !== 'All') { %>
+    <h1><%= article%>s</h1>
+<% } else {%>
+    <h1><%= article%> Items</h1>
+<% } %> 
+
+<!-- <a href="/items/new"><h3>Create item</h3></a>  -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <% for( let item of items ) { %>
+        <div class="col-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="<%=item.image%>" alt="Card image cap">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text flex-grow-1"><%= item.description %></p>
+                <a href="/items/<%=item._id%>" class="btn btn-primary mt-auto">Details</a>
+              </div>
+            </div>
+          </div>
+          
+       
+    <% } %>
+</div>
+<!-- <% if (article !== 'All') { %>
+    <a href="/items"><h3>All Items</h3></a> 
+<% } %> -->

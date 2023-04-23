@@ -1,0 +1,76 @@
+<% layout('layouts/boilerplate') %>
+<div class="card mb-3">
+  <div class="card-header">
+    <h1 class="text-center"><%= item.name %></h1>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="<%=item.image%>" alt="" class="img-fluid rounded mx-auto d-block">
+      </div>
+      <div class="col-md-6 d-flex flex-column">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Description: <%= item.description %></li>
+          <li class="list-group-item">Category: <a href="/items?article=<%=item.article%>"><%=item.article%></a></li>
+          <li class="list-group-item">Price: <%= item.price %></li>
+          <li class="list-group-item">Spec: <%= item.spec %></li>
+          <% if (item.reviews.length === 0) { %>
+              <li class="list-group-item">No reviews yet!</li>
+          <% } else {%>
+            <li class="list-group-item">-----10000!</li>
+          <% } %>
+        </ul>
+        <div class="mt-auto text-center">
+          <a href="/items" class="btn btn-primary me-3">All Items</a>
+          <a href="/items/<%=item._id%>/edit" class="btn btn-warning me-3">Edit</a>
+          <form action="/items/<%=item._id%>?_method=DELETE" method="POST" class="d-inline-block">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mb-5">
+  <h2 class="mb-4">Leave a Review</h2>
+  <form action="/items/<%=item._id%>/reviews" method="POST">
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating:</label>
+      <input type="range" class="form-range" min="1" max="5" name="rating" id="rating">
+      <div class="d-flex justify-content-between">
+        <small>1</small>
+        <small>5</small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Review:</label>
+      <textarea class="form-control" name="content" id="content" cols="20" rows="4" style="resize: none;"></textarea>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success px-5">Submit</button>
+    </div>
+  </form>
+  
+  <% for(let review of item.reviews) { %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Rating: <%= review.rating %></h5>
+        <p class="card-text">Review: <%= review.content %></p>
+        <div class="d-flex justify-content-end">
+          <a href="/items/<%= item._id %>/reviews/<%= review._id%>/edit" class="btn btn-warning me-3">Edit</a>
+          <form action="/items/<%= item._id %>/reviews/<%= review._id%>?_method=DELETE" method="POST" class="d-inline-block">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% } %>
+  
+</div>
+
+
+
+  
+  
