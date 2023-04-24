@@ -40,7 +40,6 @@ router.get('/:id', LoggedIn, AsyncWrapper(async (req, res) => {
             path: 'author'
         }
     });
-    console.log(item.seller);
     const avg = getAvg(item.reviews);
     res.render('items/show', {item, avg});
 }))
