@@ -5,7 +5,17 @@ const User = require("../models/user");
 const Review = require("../models/review");
 const passport = require('passport');
 const { LoggedIn } = require('../utils/LoggedIn');
-const { Aggregate } = require('mongoose');
+
+
+function getAvg(obj) {
+    let a = 0, i = 0;
+    for(let o of obj){
+        a += o.rating;
+        i++;
+    }
+    return a/i;
+}
+
 
 // register page
 router.get('/register', (req, res) => {
@@ -48,43 +58,23 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/profile', LoggedIn,  AsyncWrapper(async (req, res) => {
-    // console.log(req.user._id);
-    const result = await Review.aggregate([
-        {
-            $match: {
-                _id: req.user._id
-            }
-        },
+    const results = await Review.aggregate([
         {
             $lookup: {
                 from: "reviews",
-                localField: "username",
-                foreignField: "Author",
-                as: "Reviews"
+                localField: "_id",
+                foreignField: "author",
+                as: "reviews"
             }
         },
         {
-            $group: {
-                _id: null,
-                average: {
-                    $avg: "$rating"
-                }
+            $match: {
+                author: req.user._id
             }
-        }
+        },
     ])
-    const reviews = {};
-    // const reviews = await User.findById(req.user._id).populate({
-    //     path: 'reviews',
-    //     populate: {
-    //         path: 'author'
-    //     }
-    // });
-    // Aggregate.l
-    // const username = req.user._id;
-    // console.log(username);
-    // const reviews = await Review.find({username}).populate('username');
-    // res.send(result);
-    res.render('users/profile', {reviews});
+    const avg = getAvg(results);
+    res.render('users/profile', {results, avg});
 }))
 
 module.exports = router;

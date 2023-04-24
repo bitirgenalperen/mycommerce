@@ -1,15 +1,31 @@
 <% layout('layouts/boilerplate') %>
-<h1>User Profile</h1>
-<h2><%=activeUser.username%></h2>
-<p><strong>Email:</strong> <%= activeUser.email %></p>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card mb-4 col-4">
+    <div class="card-body bg-info">
+      <div class="text-center m-3">
+        <h1><%=activeUser.username%></h1>
+        <h4><strong>email:</strong> <%= activeUser.email %></h4>
+        <h3>Average Rating: <%= avg %></h3>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <h3>Reviews</h3>
-<% if (reviews) { %>
-  <ul>
-    <% reviews.forEach(function(review) { %>
-      <li><%= review %></li>
-    <% }); %>
-  </ul>
+
+<% if (results) { %>
+  
+  <% for(let result of results) { %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><%= result.name %></h5>
+        <p class="card-text"><%= result.content %></p>
+        <p class="card-text text-end fw-bold">Rating: <%= result.rating %></p>
+      </div>
+    </div>
+  <% } %>
+</div>
 <% } else { %>
   <p>No reviews found.</p>
 <% } %>
