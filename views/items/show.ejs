@@ -64,8 +64,10 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">Rating: <%= review.rating %></h5>
-        <p class="card-text">Review: <%= review.content %></p>
-        <p class="card-text">Author: <%= review.author.username %></p>
+        <% if (review.content) { %>
+          <p class="card-text">Review: <%= review.content %></p>
+        <% } %>
+        <p class="card-text text-danger text-end">- <%= review.author.username %></p>
         <% if (review.author.equals(activeUser._id)) { %>
           <div class="d-flex justify-content-end">
             <a href="/items/<%= item._id %>/reviews/<%= review._id%>/edit" class="btn btn-warning me-3">Edit</a>
@@ -73,7 +75,8 @@
               <button class="btn btn-danger">Delete</button>
             </form>
           </div>
-        <% } %>
+        
+          <% } %>
 
 
       </div>

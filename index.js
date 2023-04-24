@@ -17,8 +17,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_DB_URI = process.env.MONGO_DB_URI;
 
-const Item = require("./models/item");
-const Review = require("./models/review");
 const User = require("./models/user");
 
 const itemsRoutes = require('./routes/items');
@@ -93,9 +91,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log(`Listening on PORT ${PORT}`);
 })
-
-
-
-
-
-
