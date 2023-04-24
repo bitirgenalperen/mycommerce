@@ -9,12 +9,19 @@ const { LoggedIn } = require('../utils/LoggedIn');
 // add a review
 router.post('/', LoggedIn, AsyncWrapper(async (req, res) => {
     const {itemId} = req.params;
-    const item = await Item.findById(itemId);
-    const {content, rating} = req.body; 
-    const review = new Review({content, rating});
-    review.author = req.user._id;
-    item.reviews.push(review);
-    await review.save();
+    const item = await Item.findById(itemId).populate('reviews');
+    const {content, rating} = req.body;
+    const oldReview = item.reviews.find(review => review.author.equals(req.user._id));
+    if(oldReview){ // already reviewed
+        oldReview.content = content;
+        oldReview.rating = rating;
+        await oldReview.save();
+    } else { // first time review
+        const review = new Review({content, rating});
+        review.author = req.user._id;
+        item.reviews.push(review);
+        await review.save();
+    }
     await item.save();
     res.redirect(`/items/${itemId}`,);
 }))

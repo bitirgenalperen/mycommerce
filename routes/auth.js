@@ -5,16 +5,9 @@ const User = require("../models/user");
 const Review = require("../models/review");
 const passport = require('passport');
 const { LoggedIn } = require('../utils/LoggedIn');
+const {getAvg} = require('../utils/Helper');
 
 
-function getAvg(obj) {
-    let a = 0, i = 0;
-    for(let o of obj){
-        a += o.rating;
-        i++;
-    }
-    return a/i;
-}
 
 // register page
 router.get('/register', (req, res) => {

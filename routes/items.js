@@ -3,11 +3,7 @@ const router = express.Router();
 const AsyncWrapper = require('../utils/AsyncWrapper');
 const {LoggedIn} = require('../utils/LoggedIn');
 const Item = require("../models/item");
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
+const {capitalizeFirstLetter, getAvg} = require("../utils/Helper");
 
 
 router.get('/', AsyncWrapper(async (req, res) => {
@@ -44,7 +40,8 @@ router.get('/:id', LoggedIn, AsyncWrapper(async (req, res) => {
             path: 'author'
         }
     });
-    res.render('items/show', {item});
+    const avg = getAvg(item.reviews);
+    res.render('items/show', {item, avg});
 }))
 
 router.get('/:id/edit', LoggedIn, AsyncWrapper(async (req, res) => {
