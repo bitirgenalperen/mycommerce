@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const plm = require('passport-local-mongoose');
-
+const Review = require('./review');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -8,7 +8,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true
-  },
+  }
 });
 
 userSchema.plugin(plm);

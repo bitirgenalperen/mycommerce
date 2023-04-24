@@ -68,7 +68,7 @@
         <% if (review.author.equals(activeUser._id)) { %>
           <div class="d-flex justify-content-end">
             <a href="/items/<%= item._id %>/reviews/<%= review._id%>/edit" class="btn btn-warning me-3">Edit</a>
-            <form action="/items/<%= item._id %>/reviews/<%= review._id%>?_method=DELETE" method="POST" class="d-inline-block">
+            <form action="/items/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST" class="d-inline-block">
               <button class="btn btn-danger">Delete</button>
             </form>
           </div>

@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="d-flex justify-content-end">
+  <a class="btn btn-primary mb-3" href="/register">Register New User</a>
+</div>
+
+<h3 class="mb-5">USERS</h3>
+
+<% if (users) { %>
+  
+  <% for(let user of users) { %>
+    <% if (user.username !== "admin") { %>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Username: <%= user.username %></h4>
+          <h6 class="card-text">Email: <%= user.email %></h6>
+          <form action="/users/<%=user._id%>?_method=DELETE" method="POST" class="d-inline-block">
+              <button class="btn btn-danger">Remove User</button>
+          </form>
+        </div>
+      </div>
+    <% } %>
+    
+  <% } %>
+</div>
+<% } else { %>
+  <p>No reviews found.</p>
+<% } %>

@@ -77,4 +77,21 @@ router.get('/profile', LoggedIn,  AsyncWrapper(async (req, res) => {
     res.render('users/profile', {results, avg});
 }))
 
+router.get('/users', AsyncWrapper( async(req, res) => {
+    const users = await User.find();
+    // res.send(users);
+    res.render('users/users', {users});
+}))
+
+router.delete('/users/:userId', AsyncWrapper(async (req, res) => {
+    const {userId} = req.params;
+    const deletedUser = await User.findByIdAndDelete(userId);
+    if(!deletedUser){
+        return res.status(404).send("User not found!");
+    }
+    const results = await Review.deleteMany({author: userId});
+
+    res.send(results);
+}))
+
 module.exports = router;
