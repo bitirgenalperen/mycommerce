@@ -16,7 +16,6 @@ function getAvg(obj) {
     return a/i;
 }
 
-
 // register page
 router.get('/register', (req, res) => {
     res.render('users/register');
@@ -27,13 +26,7 @@ router.post('/register', AsyncWrapper(async(req, res, next) => {
     try {
         const {email, username, password} = req.body;
         const newUser = new User({email, username})
-        const userRegister = await User.register(newUser, password);
-        req.login(userRegister, error => {
-            if(error){
-                return next(error);
-            }
-            res.redirect('/items');
-        });
+        res.redirect('/items');
     } catch (error) {
         res.redirect('/register');
     }
@@ -42,7 +35,6 @@ router.post('/register', AsyncWrapper(async(req, res, next) => {
 router.get('/login', (req, res) => {
     res.render('users/login');
 })
-
 
 router.post('/login', 
     passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), 
