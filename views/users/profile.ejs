@@ -5,17 +5,21 @@
       <div class="text-center m-3">
         <h1><%=activeUser.username%></h1>
         <h4><strong>email:</strong> <%= activeUser.email %></h4>
-        <h3>Average Rating: <%= avg %></h3>
+        <h3>Average Rating: 
+        <% if (isNaN(avg)) { %>
+         - </h3>
+          
+        <% } else {%>
+          <%= avg %></h3>
+        <% } %>
       </div>
     </div>
   </div>
 </div>
 
 
-<h3>Reviews</h3>
-
 <% if (results) { %>
-  
+  <h3 class="text-center mt-4">Reviews</h3>
   <% for(let result of results) { %>
     <div class="card mb-4">
       <div class="card-body">
