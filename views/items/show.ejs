@@ -25,13 +25,14 @@
             <li class="list-group-item">-----10000!</li>
           <% } %>
         </ul>
+        <% if (activeUser.username === "admin") { %>
         <div class="mt-auto text-center">
-          <a href="/items" class="btn btn-primary me-3">All Items</a>
-          <a href="/items/<%=item._id%>/edit" class="btn btn-warning me-3">Edit</a>
-          <form action="/items/<%=item._id%>?_method=DELETE" method="POST" class="d-inline-block">
-            <button class="btn btn-danger">Delete</button>
-          </form>
+            <a href="/items/<%=item._id%>/edit" class="btn btn-warning me-3">Edit</a>
+            <form action="/items/<%=item._id%>?_method=DELETE" method="POST" class="d-inline-block">
+              <button class="btn btn-danger">Delete</button>
+            </form>
         </div>
+        <% } %>
       </div>
     </div>
   </div>
@@ -63,12 +64,17 @@
       <div class="card-body">
         <h5 class="card-title">Rating: <%= review.rating %></h5>
         <p class="card-text">Review: <%= review.content %></p>
-        <div class="d-flex justify-content-end">
-          <a href="/items/<%= item._id %>/reviews/<%= review._id%>/edit" class="btn btn-warning me-3">Edit</a>
-          <form action="/items/<%= item._id %>/reviews/<%= review._id%>?_method=DELETE" method="POST" class="d-inline-block">
-            <button class="btn btn-danger">Delete</button>
-          </form>
-        </div>
+        <p class="card-text">Author: <%= review.author.username %></p>
+        <% if (review.author.equals(activeUser._id)) { %>
+          <div class="d-flex justify-content-end">
+            <a href="/items/<%= item._id %>/reviews/<%= review._id%>/edit" class="btn btn-warning me-3">Edit</a>
+            <form action="/items/<%= item._id %>/reviews/<%= review._id%>?_method=DELETE" method="POST" class="d-inline-block">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        <% } %>
+
+
       </div>
     </div>
   <% } %>

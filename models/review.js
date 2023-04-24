@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+// author required olmaması => problem
 const reviewSchema = new Schema({
   author: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     trim: true,
   },
@@ -17,7 +18,7 @@ const reviewSchema = new Schema({
   },
   rating: {
     type: Number,
-    min:0,
+    min:1,
     max:5,
     default:0
   },

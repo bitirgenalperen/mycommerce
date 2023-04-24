@@ -38,7 +38,12 @@ router.post('/', LoggedIn, AsyncWrapper(async (req, res) => {
 
 router.get('/:id', LoggedIn, AsyncWrapper(async (req, res) => {
     const {id} = req.params;
-    const item = await Item.findById(id).populate('reviews');
+    const item = await Item.findById(id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
     res.render('items/show', {item});
 }))
 

@@ -1,1 +1,15 @@
 <% layout('layouts/boilerplate') %>
+<h1>User Profile</h1>
+<h2><%=activeUser.username%></h2>
+<p><strong>Email:</strong> <%= activeUser.email %></p>
+
+<h3>Reviews</h3>
+<% if (reviews) { %>
+  <ul>
+    <% reviews.forEach(function(review) { %>
+      <li><%= review %></li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No reviews found.</p>
+<% } %>
