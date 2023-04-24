@@ -8,6 +8,6 @@ module.exports = {
             a += o.rating;
             i++;
         }
-        return a/i;
+        return (a/i).toFixed(2);
     }
 }
