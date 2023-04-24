@@ -25,9 +25,9 @@ router.get("/new", LoggedIn, (req, res) => {
 })
 
 router.post('/', LoggedIn, AsyncWrapper(async (req, res) => {
-    const {name, description, article, price, image} = req.body;
+    const {name, description, article, price, image,seller} = req.body;
     // console.log(name, description, article, price, image);
-    const newItem = new Item({name, description, article, price, image});
+    const newItem = new Item({name, description, article, price, image, seller});
     await newItem.save();
     res.redirect(`/items/${newItem._id}/edit`);
 }))
@@ -40,6 +40,7 @@ router.get('/:id', LoggedIn, AsyncWrapper(async (req, res) => {
             path: 'author'
         }
     });
+    console.log(item.seller);
     const avg = getAvg(item.reviews);
     res.render('items/show', {item, avg});
 }))

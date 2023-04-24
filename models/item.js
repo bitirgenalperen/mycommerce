@@ -38,8 +38,8 @@ const itemSchema = new Schema({
     min: 0
   },
   seller: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String,
+    required: true
   },
   uploadedAt: {
     type: Date,

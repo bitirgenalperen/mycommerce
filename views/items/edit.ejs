@@ -9,6 +9,11 @@
         value="<%=item.name%>" required>
     </div>
     <div class="mb-3">
+        <label class="form-label" for="name">Seller</label>
+        <input class="form-control" type="text" name="seller" id="seller" placeholder="Seller" 
+        value="<%=item.seller%>" required>
+    </div>
+    <div class="mb-3">
         <label class="form-label" for="description">Item Description</label>
         <textarea class="form-control" type="text" name="description" id="description" 
         placeholder="Item description" required><%=item.description%></textarea>

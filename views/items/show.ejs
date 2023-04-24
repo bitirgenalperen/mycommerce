@@ -10,6 +10,7 @@
       </div>
       <div class="col-md-6 d-flex flex-column">
         <ul class="list-group list-group-flush">
+          <li class="list-group-item">Seller: <%= item.seller %></li>
           <li class="list-group-item">Description: <%= item.description %></li>
           <li class="list-group-item">Category: <a href="/items?article=<%=item.article%>"><%=item.article%></a></li>
           <li class="list-group-item">Price: <%= item.price %></li>
@@ -38,7 +39,7 @@
   </div>
 </div>
 
-
+<% if (activeUser.username !== "admin") { %>
 <div class="mb-5">
   <h2 class="mb-4">Leave a Review</h2>
   <form action="/items/<%=item._id%>/reviews" method="POST">
@@ -58,7 +59,7 @@
       <button type="submit" class="btn btn-success px-5">Submit</button>
     </div>
   </form>
-  
+  <% } %>
   <% for(let review of item.reviews) { %>
     <div class="card mb-3">
       <div class="card-body">
