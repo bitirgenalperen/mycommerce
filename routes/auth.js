@@ -76,7 +76,7 @@ router.delete('/users/:userId', AsyncWrapper(async (req, res) => {
     }
     const results = await Review.deleteMany({author: userId});
 
-    res.send(results);
+    res.redirect('/users');
 }))
 
 module.exports = router;
