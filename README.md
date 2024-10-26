@@ -1,6 +1,10 @@
-# mycommerce
+# mycommerce - Software Development and Requirements Documentation 
 
+Date: 
 
+Version: V1 - description in CURRENT form 
+
+ 
 ## Table of Contents
 - [Overview](#1-overview)
   + [Features](#11-features)
@@ -75,20 +79,20 @@ npm start
 
 ### 2. Stakeholders
 ### 3. Context Diagram and Interfaces
-#### Context Diagram
-#### Interfaces
-### Stories and Personas
-### Functional and Non-functional Requirements
-#### Functional Requirements
-#### Non-functional Requirements
-### Use Case Diagram and Use Cases
-#### Use Case Diagram
-#### Use cases
-#### Relevant Scenarios
-### Glossary
-### System Design
-### Deployment Diagram
-### Contact
+#### 3.1. Context Diagram
+#### 3.2. Interfaces
+### 4. Stories and Personas
+### 5. Functional and Non-functional Requirements
+#### 5.1. Functional Requirements
+#### 5.2. Non-functional Requirements
+### 6. Use Case Diagram and Use Cases
+#### 6.1. Use Case Diagram
+#### 6.2. Use cases
+#### 6.3. Relevant Scenarios
+### 7. Glossary
+### 8. System Design
+### 9. Deployment Diagram
+### 10. Contact
 
 
 
