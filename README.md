@@ -386,6 +386,30 @@ npm start
 |  2     |  |
 |  ...     |  |
 
+### Use Case 10, UC10
+
+##### Scenario 10.1
+
+| Scenario 10.1 | |
+| ------------- |:-------------:| 
+|  Precondition     | \<Boolean expression, must evaluate to true before the scenario can start> |
+|  Post condition     | \<Boolean expression, must evaluate to true after scenario is finished> |
+| Step#        | Description  |
+|  1     |  |  
+|  2     |  |
+|  ...     |  |
+
+##### Scenario 10.2
+
+| Scenario 10.2 | |
+| ------------- |:-------------:| 
+|  Precondition     | \<Boolean expression, must evaluate to true before the scenario can start> |
+|  Post condition     | \<Boolean expression, must evaluate to true after scenario is finished> |
+| Step#        | Description  |
+|  1     |  |  
+|  2     |  |
+|  ...     |  |
+
 
 ---
 ### 7. Glossary
