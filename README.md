@@ -41,16 +41,13 @@ Version: V1 - description in CURRENT form
 
 Provide a brief summary of your project. Explain the core problem it solves and the main functionalities it offers.
 
----
 
-### 1.1. Features
+#### 1.1. Features
 
 List the main features of the application. Be concise and clear.
 
 
----
-
-### 1.2. Installation
+#### 1.2. Installation
 
 Describe the steps required to install and run the project locally. Include any dependencies, commands, or setup instructions.
 
@@ -69,30 +66,70 @@ DATABASE_URL=your_database_url
 npm start
 ```
 
-### 1.3. Tech Stack
+#### 1.3. Tech Stack
 
-#### 1.3.1 Technologies Used
-#### 1.3.2. System Architecture
-#### 1.3.3. Roles and Permissions (RBAC)
-#### 1.3.4. Usage
-#### 1.3.5. DevOps and Deployment
+##### 1.3.1 Technologies Used
 
+##### 1.3.2. System Architecture
+
+##### 1.3.3. Roles and Permissions (RBAC)
+
+##### 1.3.4. Usage
+
+##### 1.3.5. DevOps and Deployment
+
+
+---
 ### 2. Stakeholders
+
+
+---
 ### 3. Context Diagram and Interfaces
+
 #### 3.1. Context Diagram
+
 #### 3.2. Interfaces
+
+
+---
 ### 4. Stories and Personas
+
+
+---
 ### 5. Functional and Non-functional Requirements
+
 #### 5.1. Functional Requirements
+
 #### 5.2. Non-functional Requirements
+
+
+---
 ### 6. Use Case Diagram and Use Cases
+
 #### 6.1. Use Case Diagram
+
 #### 6.2. Use cases
+
 #### 6.3. Relevant Scenarios
+
+
+---
 ### 7. Glossary
+
+
+---
 ### 8. System Design
+
+
+---
 ### 9. Deployment Diagram
+
+
+---
 ### 10. Contact
+
+
+---
 
 
 
